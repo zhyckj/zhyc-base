@@ -1,0 +1,49 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 模块唯一编码；用于模块注册、依赖声明和权限前缀归属。
+moduleCode: purchase
+# 模块中文名称；用于后台菜单和模块管理展示。
+moduleName: 采购样板
+# 模块版本号；用于模块能力演进和兼容性识别。
+version: 1.0.0
+# 模块类型；business 表示业务样板模块。
+moduleType: business
+# 租户模式；tenant_id 表示采购申请和订单按租户隔离。
+tenantMode: tenant_id
+# 权限编码前缀；采购权限统一使用 purchase 前缀。
+permissionPrefix: purchase
+# 后端基础包名；模块扫描和规范校验使用。
+backendPackage: com.zhyc.purchase
+# 是否依赖开放 API 网关运行。
+openApiGatewayRequired: true
+# 是否依赖认证中心运行。
+authServerRequired: true
+# 是否默认启用模块。
+enabled: true
+# 当前模块依赖的基础模块编码。
+dependencies:
+  - common
+  - system
+  - workflow
+  - openapi
+# 当前模块贡献的菜单编码。
+menus:
+  - purchase:request
+  - purchase:order
+# 当前模块声明的 Shiro 权限编码；必须与接口注解和菜单按钮保持一致。
+permissions:
+  - purchase:approval:query
+  - purchase:order:close
+  - purchase:order:confirm
+  - purchase:order:create
+  - purchase:order:query
+  - purchase:request:view
+  - purchase:request:create
+  - purchase:request:submit
+  - purchase:request:revoke
+# 当前模块需要加载的数据库初始化脚本。
+databaseScripts:
+  - classpath:db/V1__purchase_core.sql

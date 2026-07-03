@@ -1,0 +1,18 @@
+ZHYC Non-Commercial Source-Available License Reference
+
+Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+
+This license reference applies to files that declare:
+
+SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+The covered files are part of ZHYC and are licensed for non-commercial use only.
+Personal learning, research, and non-commercial evaluation are permitted.
+
+Commercial use, including production deployment, SaaS operation, customer
+delivery, paid integration, resale, or use inside a commercial product or
+service, requires a separate written commercial license from the copyright
+holder.
+
+See the repository LICENSE and COMMERCIAL-LICENSE.md files for the complete
+license terms and commercial authorization scope.

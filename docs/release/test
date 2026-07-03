@@ -1,0 +1,67 @@
+ZHYC_ENV=test
+
+ZHYC_REDIS_HOST=127.0.0.1
+ZHYC_REDIS_PORT=6379
+ZHYC_REDIS_PASSWORD=rewqfdsa@#@#
+ZHYC_REDIS_DATABASE=0
+ZHYC_CACHE_ENABLED=true
+ZHYC_REDIS_ENABLED=true
+ZHYC_CACHE_PREFIX=zhyc:test
+
+ZHYC_PLATFORM_PORT=8081
+ZHYC_PLATFORM_DATASOURCE_URL='jdbc:mysql://127.0.0.1:3306/zhyc_test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai'
+ZHYC_PLATFORM_DATASOURCE_USERNAME=zhyc_test
+ZHYC_PLATFORM_DATASOURCE_PASSWORD=MhbL6ej48WcEE8yr
+
+ZHYC_AUTH_PORT=8090
+ZHYC_AUTH_DATASOURCE_URL='jdbc:mysql://127.0.0.1:3306/zhyc_test?useUnicode=true&characterEncoding=utf8&preserveInstants=true&connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true'
+ZHYC_AUTH_DATASOURCE_USERNAME=zhyc_test
+ZHYC_AUTH_DATASOURCE_PASSWORD=MhbL6ej48WcEE8yr
+ZHYC_AUTH_DATASOURCE_DRIVER=com.mysql.cj.jdbc.Driver
+
+ZHYC_AUTH_CLIENT_ID=zhyc-auth-client
+ZHYC_AUTH_CLIENT_SECRET=local_auth_client_secret
+ZHYC_AUTH_ISSUER=https://base-auth.zhyc-cloud.com
+ZHYC_AUTH_REDIRECT_URI=https://base.zhyc-cloud.com/auth/callback
+ZHYC_AUTH_LOGIN_SUCCESS_REDIRECT_URI=https://base.zhyc-cloud.com/login
+ZHYC_AUTH_FRONTEND_LOGIN_URI=https://base.zhyc-cloud.com/login
+ZHYC_AUTH_POST_LOGOUT_REDIRECT_URI=https://base.zhyc-cloud.com/login?loggedOut=1
+
+ZHYC_AUTH_USER_NAME=admin
+ZHYC_AUTH_USER_PASSWORD=local_auth_user_password
+ZHYC_AUTH_PLATFORM_TENANT_ID=zhyc-platform
+ZHYC_AUTH_PLATFORM_USER_ID=1
+ZHYC_AUTH_PLATFORM_USERNAME=admin
+
+ZHYC_AUTH_JWK_PRIVATE_KEY_PEM=local_private_key_pem
+ZHYC_AUTH_JWK_PUBLIC_KEY_PEM=local_public_key_pem
+ZHYC_AUTH_JWK_KEY_ID=zhyc-test-key
+
+ZHYC_PLATFORM_AUTH_JWK_SET_URI=https://base-auth.zhyc-cloud.com/oauth2/jwks
+ZHYC_PLATFORM_AUTH_ISSUER=https://base-auth.zhyc-cloud.com
+ZHYC_PLATFORM_AUTH_TOKEN_URI=https://base-auth.zhyc-cloud.com/oauth2/token
+ZHYC_PLATFORM_AUTH_CLIENT_ID=zhyc-auth-client
+ZHYC_PLATFORM_AUTH_CLIENT_SECRET=replace_with_platform_auth_client_secret
+
+ZHYC_OPENAPI_PORT=8070
+SPRING_DATASOURCE_URL='jdbc:mysql://127.0.0.1:3306/zhyc_test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai'
+SPRING_DATASOURCE_USERNAME=zhyc_test
+SPRING_DATASOURCE_PASSWORD=MhbL6ej48WcEE8yr
+ZHYC_OPENAPI_OAUTH2_INTROSPECTION_URI=https://base-auth.zhyc-cloud.com/oauth2/introspect
+ZHYC_OPENAPI_OAUTH2_CLIENT_ID=openapi_client
+ZHYC_OPENAPI_OAUTH2_CLIENT_SECRET=openapi_client_secret_value
+
+
+
+
+
+
+export VITE_AUTH_AUTHORIZATION_ENDPOINT=https://base-auth.zhyc-cloud.com/oauth2/authorize
+export VITE_AUTH_LOGIN_ENDPOINT=https://base-auth.zhyc-cloud.com/login
+export VITE_AUTH_LOGOUT_ENDPOINT=https://base-auth.zhyc-cloud.com/logout
+export VITE_AUTH_POST_LOGOUT_REDIRECT_URI=https://base.zhyc-cloud.com/login?loggedOut=1
+export VITE_AUTH_CLIENT_ID=zhyc-auth-client
+export VITE_AUTH_REDIRECT_URI=https://base.zhyc-cloud.com/auth/callback
+export VITE_AUTH_SCOPE="openid profile"
+
+npm run build

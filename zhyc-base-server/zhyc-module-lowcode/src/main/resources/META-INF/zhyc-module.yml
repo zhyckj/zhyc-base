@@ -1,0 +1,73 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 模块唯一编码；用于模块注册、依赖声明和权限前缀归属。
+moduleCode: lowcode
+# 模块中文名称；用于后台菜单和模块管理展示。
+moduleName: 低代码中心
+# 模块版本号；用于模块能力演进和兼容性识别。
+version: 1.0.0
+# 模块类型；core 表示平台核心模块。
+moduleType: core
+# 租户模式；tenant_id 表示模型、页面和生成记录按租户隔离。
+tenantMode: tenant_id
+# 权限编码前缀；低代码权限统一使用 lowcode 前缀。
+permissionPrefix: lowcode
+# 后端基础包名；模块扫描和规范校验使用。
+backendPackage: com.zhyc.lowcode
+# 是否依赖开放 API 网关运行。
+openApiGatewayRequired: false
+# 是否依赖认证中心运行。
+authServerRequired: true
+# 是否默认启用模块。
+enabled: true
+# 当前模块依赖的基础模块编码。
+dependencies:
+  - common
+  - system
+# 当前模块贡献的菜单编码。
+menus:
+  - lowcode:datasource
+  - lowcode:model
+  - lowcode:page
+  - lowcode:generator
+# 当前模块声明的 Shiro 权限编码；必须与接口注解和菜单按钮保持一致。
+permissions:
+  - lowcode:datasource:query
+  - lowcode:datasource:save
+  - lowcode:datasource:test
+  - lowcode:dialect:query
+  - lowcode:generator:query
+  - lowcode:generator:view
+  - lowcode:generator:preview
+  - lowcode:generator:execute
+  - lowcode:page:query
+  - lowcode:page:save
+  - lowcode:relation:query
+  - lowcode:relation:save
+  - lowcode:table:import
+  - lowcode:table:publish
+  - lowcode:table:query
+  - lowcode:table:save
+  - lowcode:template:query
+# 当前模块需要加载的数据库初始化脚本。
+databaseScripts:
+  - classpath:db/V1__lowcode_core.sql
+  - classpath:db/V2__lowcode_column_dict_code.sql
+# 当前模块提供的代码生成模板编码。
+generatorTemplates:
+  - admin-backend-controller
+  - admin-frontend-api
+  - uniapp-page
+  - openapi-portal-page
+  - microservice-module-descriptor
+# 当前模块提供的扩展点；供数据库方言、字段映射和分页能力扩展。
+extensionPoints:
+  - name: field-type-mapper
+    description: 字段类型映射扩展点
+  - name: ddl-generator
+    description: DDL 生成器扩展点
+  - name: pagination-dialect
+    description: 分页方言扩展点

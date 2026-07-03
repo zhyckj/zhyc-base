@@ -1,0 +1,17 @@
+{
+  "name": "ZHYC 快速开发平台",
+  "appid": "__UNI__ZHYC_BASE",
+  "description": "ZHYC 企业级快速开发平台移动端",
+  "versionName": "0.0.1",
+  "versionCode": "1",
+  "transformPx": false,
+  "h5": {
+    "title": "ZHYC 移动端"
+  },
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false
+    }
+  }
+}

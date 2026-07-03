@@ -1,0 +1,56 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 核心平台基础配置。
+# 本文件只放跨环境通用入口；环境差异由 ZHYC_ENV 选择 application-<env>.yml 承载。
+
+# HTTP 服务配置。
+server:
+  # 核心平台默认监听端口。
+  port: 8081
+
+# Spring Boot 基础配置。
+spring:
+  # Spring Profile 选择规则；默认 dev，可通过 ZHYC_ENV=test/prod 切换。
+  profiles:
+    active: ${ZHYC_ENV:dev}
+  # 应用名称；用于日志、监控和服务标识。
+  application:
+    name: zhyc-platform-app
+  # 核心平台主数据源配置；各环境通过 profile 或环境变量提供真实值。
+  datasource:
+    # 数据源 URL。
+    url: ${ZHYC_PLATFORM_DATASOURCE_URL}
+    # 数据源用户名。
+    username: ${ZHYC_PLATFORM_DATASOURCE_USERNAME}
+    # 数据源密码；禁止提交真实值。
+    password: ${ZHYC_PLATFORM_DATASOURCE_PASSWORD}
+
+# ZHYC 核心平台业务配置。
+zhyc:
+  # 核心平台模块配置。
+  platform:
+    # 认证中心对接配置；用于 Bearer Token 校验和后台 OAuth2 换令牌。
+    auth:
+      # 认证中心 JWK Set 地址；留空时不启用 Bearer Token 过滤器。
+      jwk-set-uri: ${ZHYC_PLATFORM_AUTH_JWK_SET_URI:}
+      # 认证中心 issuer；必须与认证中心签发令牌的 issuer 一致。
+      issuer: ${ZHYC_PLATFORM_AUTH_ISSUER:}
+      # 认证中心 Token 端点；后台授权码回调后服务端换令牌使用。
+      token-uri: ${ZHYC_PLATFORM_AUTH_TOKEN_URI:http://127.0.0.1:8090/oauth2/token}
+      # 核心平台作为 OAuth2 客户端时使用的客户端 ID。
+      client-id: ${ZHYC_PLATFORM_AUTH_CLIENT_ID:zhyc-auth-client}
+      # 核心平台 OAuth2 客户端密钥；只能服务端注入，禁止暴露给前端。
+      client-secret: ${ZHYC_PLATFORM_AUTH_CLIENT_SECRET:local_auth_client_secret}
+  # 运行时安全防护配置。
+  security:
+    protection:
+      # 是否启用安全防护中心运行时过滤器。
+      enabled: ${ZHYC_SECURITY_PROTECTION_ENABLED:true}
+
+# MyBatis 配置。
+mybatis:
+  # Mapper XML 扫描路径；覆盖各模块 mapper 目录。
+  mapper-locations: classpath*:mapper/**/*.xml

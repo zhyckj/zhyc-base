@@ -1,0 +1,31 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 模块唯一编码；用于模块注册、依赖声明和权限前缀归属。
+moduleCode: common
+# 模块中文名称；用于后台展示和审计说明。
+moduleName: 公共基础能力
+# 模块版本号；用于模块能力演进和兼容性识别。
+version: 1.0.0
+# 模块类型；core 表示平台核心模块。
+moduleType: core
+# 租户模式；global 表示公共能力不绑定单个租户业务表。
+tenantMode: global
+# 权限编码前缀；公共能力统一使用 common 前缀。
+permissionPrefix: common
+# 后端基础包名；模块扫描和规范校验使用。
+backendPackage: com.zhyc.common
+# 是否依赖开放 API 网关运行。
+openApiGatewayRequired: false
+# 是否依赖认证中心运行。
+authServerRequired: false
+# 是否默认启用模块。
+enabled: true
+# 模块提供的扩展点；供其他模块按名称接入公共能力。
+extensionPoints:
+  - name: module-descriptor-loader
+    description: 模块描述扫描和注册表构建扩展点
+  - name: workflow-service
+    description: 工作流门面扩展点

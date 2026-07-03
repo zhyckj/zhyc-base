@@ -1,0 +1,181 @@
+{
+  "pages": [
+    {
+      "path": "pages/workbench/index",
+      "style": {
+        "navigationBarTitleText": "工作台",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/auth/login",
+      "style": {
+        "navigationBarTitleText": "移动登录",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "移动登录",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/workbench/quick-start",
+      "style": {
+        "navigationBarTitleText": "快捷发起",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/workflow/todo",
+      "style": {
+        "navigationBarTitleText": "流程待办",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/workflow/done",
+      "style": {
+        "navigationBarTitleText": "流程已办",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/workflow/started",
+      "style": {
+        "navigationBarTitleText": "我发起的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/workflow/cc",
+      "style": {
+        "navigationBarTitleText": "抄送我的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/workflow/detail",
+      "style": {
+        "navigationBarTitleText": "审批详情",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/ai/index",
+      "style": {
+        "navigationBarTitleText": "AI 助手",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/message/index",
+      "style": {
+        "navigationBarTitleText": "消息通知",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/purchase/request-form",
+      "style": {
+        "navigationBarTitleText": "采购申请",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/purchase/request-list",
+      "style": {
+        "navigationBarTitleText": "采购申请列表",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/purchase/order-list",
+      "style": {
+        "navigationBarTitleText": "采购订单列表",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/purchase/order-detail",
+      "style": {
+        "navigationBarTitleText": "采购订单",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/purchase/approval-records",
+      "style": {
+        "navigationBarTitleText": "采购审批记录",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/mine/index",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/mine/change-password",
+      "style": {
+        "navigationBarTitleText": "修改密码",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/mine/tenant-switch",
+      "style": {
+        "navigationBarTitleText": "租户切换",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/mine/login-devices",
+      "style": {
+        "navigationBarTitleText": "登录设备",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/mine/about",
+      "style": {
+        "navigationBarTitleText": "关于系统",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/profile/index",
+      "style": {
+        "navigationBarTitleText": "个人中心",
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "tabBar": {
+    "color": "#64748b",
+    "selectedColor": "#1677ff",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/workbench/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/workflow/todo",
+        "text": "流程"
+      },
+      {
+        "pagePath": "pages/ai/index",
+        "text": "AI"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  }
+}

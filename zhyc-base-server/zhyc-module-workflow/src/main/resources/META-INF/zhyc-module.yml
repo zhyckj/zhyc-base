@@ -1,0 +1,54 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 模块唯一编码；用于模块注册、依赖声明和权限前缀归属。
+moduleCode: workflow
+# 模块中文名称；用于后台菜单和模块管理展示。
+moduleName: 工作流中心
+# 模块版本号；用于模块能力演进和兼容性识别。
+version: 1.0.0
+# 模块类型；core 表示平台核心模块。
+moduleType: core
+# 租户模式；tenant_id 表示流程模型、绑定和任务按租户隔离。
+tenantMode: tenant_id
+# 权限编码前缀；工作流权限统一使用 workflow 前缀。
+permissionPrefix: workflow
+# 后端基础包名；模块扫描和规范校验使用。
+backendPackage: com.zhyc.workflow
+# 是否依赖开放 API 网关运行。
+openApiGatewayRequired: false
+# 是否依赖认证中心运行。
+authServerRequired: true
+# 是否默认启用模块。
+enabled: true
+# 当前模块依赖的基础模块编码。
+dependencies:
+  - common
+  - system
+# 当前模块贡献的菜单编码。
+menus:
+  - workflow:model
+  - workflow:task
+  - workflow:binding
+# 当前模块声明的 Shiro 权限编码；必须与接口注解和菜单按钮保持一致。
+permissions:
+  - workflow:binding:query
+  - workflow:binding:update
+  - workflow:model:query
+  - workflow:model:deploy
+  - workflow:model:update
+  - workflow:task:cc
+  - workflow:task:detail
+  - workflow:task:done
+  - workflow:task:monitor
+  - workflow:task:started
+  - workflow:task:todo
+  - workflow:task:view
+  - workflow:task:approve
+  - workflow:task:reject
+  - workflow:task:revoke
+# 当前模块需要加载的数据库初始化脚本。
+databaseScripts:
+  - classpath:db/V1__workflow_core.sql

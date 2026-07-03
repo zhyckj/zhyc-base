@@ -1,0 +1,87 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 认证中心正式环境配置。
+# 正式环境只允许通过环境变量、配置中心或密钥管理系统注入真实值。
+
+# HTTP 服务配置。
+server:
+  # 认证中心正式环境监听端口。
+  port: ${ZHYC_AUTH_PORT:8090}
+
+# Spring Boot 正式环境基础设施配置。
+spring:
+  # Redis 和 Spring Session 连接配置；正式环境必须显式注入主机和密码。
+  data:
+    redis:
+      # Redis 主机。
+      host: ${ZHYC_REDIS_HOST}
+      # Redis 端口。
+      port: ${ZHYC_REDIS_PORT:6379}
+      # Redis 密码；正式环境不得留空。
+      password: ${ZHYC_REDIS_PASSWORD}
+      # Redis 数据库序号。
+      database: ${ZHYC_REDIS_DATABASE:0}
+      # Redis 连接超时时间。
+      timeout: ${ZHYC_REDIS_TIMEOUT:2s}
+  # Spring Session 配置。
+  session:
+    # 会话存储类型。
+    store-type: ${ZHYC_SESSION_STORE_TYPE:redis}
+    # 会话过期时间。
+    timeout: ${ZHYC_SESSION_TIMEOUT:30m}
+
+# ZHYC 认证中心正式环境配置。
+zhyc:
+  # 缓存配置。
+  cache:
+    # 是否启用缓存。
+    enabled: ${ZHYC_CACHE_ENABLED:true}
+    # 缓存 Key 前缀。
+    prefix: ${ZHYC_CACHE_PREFIX:zhyc}
+  # OAuth2/OIDC、登录用户、平台主体映射和令牌签名配置。
+  auth:
+    # OAuth2 客户端 ID。
+    client-id: ${ZHYC_AUTH_CLIENT_ID}
+    # OAuth2 客户端密钥；必须来自密钥管理系统或受控环境变量。
+    client-secret: ${ZHYC_AUTH_CLIENT_SECRET}
+    # 授权码模式回调地址。
+    redirect-uri: ${ZHYC_AUTH_REDIRECT_URI}
+    # 登录成功跳转地址。
+    login-success-redirect-uri: ${ZHYC_AUTH_LOGIN_SUCCESS_REDIRECT_URI}
+    # 前端登录页地址。
+    frontend-login-uri: ${ZHYC_AUTH_FRONTEND_LOGIN_URI}
+    # 登出完成跳转地址。
+    post-logout-redirect-uri: ${ZHYC_AUTH_POST_LOGOUT_REDIRECT_URI}
+    # JWT issuer。
+    issuer: ${ZHYC_AUTH_ISSUER}
+    # 认证中心登录账号。
+    user-name: ${ZHYC_AUTH_USER_NAME}
+    # 认证中心登录密码。
+    user-password: ${ZHYC_AUTH_USER_PASSWORD}
+    # 平台租户编码 Claim。
+    platform-tenant-id: ${ZHYC_AUTH_PLATFORM_TENANT_ID}
+    # 平台用户主键 Claim，必须为正整数。
+    platform-user-id: ${ZHYC_AUTH_PLATFORM_USER_ID}
+    # 平台登录账号 Claim。
+    platform-username: ${ZHYC_AUTH_PLATFORM_USERNAME}
+    # 认证中心正式数据源配置。
+    datasource:
+      # 数据源 URL。
+      url: ${ZHYC_AUTH_DATASOURCE_URL}
+      # 数据源用户名。
+      username: ${ZHYC_AUTH_DATASOURCE_USERNAME}
+      # 数据源密码。
+      password: ${ZHYC_AUTH_DATASOURCE_PASSWORD}
+      # JDBC 驱动类名。
+      driver-class-name: ${ZHYC_AUTH_DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
+    # JWT 签名密钥配置。
+    jwk:
+      # RSA 私钥 PEM。
+      private-key-pem: ${ZHYC_AUTH_JWK_PRIVATE_KEY_PEM}
+      # RSA 公钥 PEM。
+      public-key-pem: ${ZHYC_AUTH_JWK_PUBLIC_KEY_PEM}
+      # JWK Key ID。
+      key-id: ${ZHYC_AUTH_JWK_KEY_ID}

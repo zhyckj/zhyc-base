@@ -1,0 +1,64 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 核心平台开发环境配置。
+# 本文件只保留本地开发默认值和环境变量引用，不得写入真实密码、Token、私钥或 AI Key。
+
+# HTTP 服务配置。
+server:
+  # 核心平台开发环境监听端口。
+  port: ${ZHYC_PLATFORM_PORT:8081}
+
+# Spring Boot 开发环境基础设施配置。
+spring:
+  # Spring Cache 实现类型；默认 Redis。
+  cache:
+    type: ${ZHYC_CACHE_TYPE:redis}
+  # Redis 连接配置；用于缓存、权限缓存和业务公共缓存。
+  data:
+    redis:
+      # Redis 主机。
+      host: ${ZHYC_REDIS_HOST:127.0.0.1}
+      # Redis 端口。
+      port: ${ZHYC_REDIS_PORT:6379}
+      # Redis 密码；本地默认空，真实密码通过环境变量注入。
+      password: ${ZHYC_REDIS_PASSWORD:}
+      # Redis 数据库序号。
+      database: ${ZHYC_REDIS_DATABASE:0}
+      # Redis 连接超时时间。
+      timeout: ${ZHYC_REDIS_TIMEOUT:2s}
+  # 核心平台开发数据源配置。
+  datasource:
+    # 主库 URL；开发环境默认本机 MySQL。
+    url: ${ZHYC_PLATFORM_DATASOURCE_URL:jdbc:mysql://127.0.0.1:3306/zhyc-base-v1?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    # 主库用户名；可用环境变量覆盖。
+    username: ${ZHYC_PLATFORM_DATASOURCE_USERNAME:root}
+    # 主库密码；示例值仅用于本机开发，真实环境不得复用。
+    password: ${ZHYC_PLATFORM_DATASOURCE_PASSWORD:123456}
+
+# ZHYC 核心平台开发环境配置。
+zhyc:
+  # 平台缓存开关、前缀和默认过期时间。
+  cache:
+    # 是否启用平台缓存。
+    enabled: ${ZHYC_CACHE_ENABLED:true}
+    # 缓存 Key 前缀；保持 zhyc 品牌前缀。
+    prefix: ${ZHYC_CACHE_PREFIX:zhyc}
+    # 默认缓存过期时间，使用 ISO-8601 Duration 格式。
+    default-ttl: ${ZHYC_CACHE_DEFAULT_TTL:PT10M}
+  # 核心平台模块配置。
+  platform:
+    # 认证中心对接配置。
+    auth:
+      # JWK Set 地址；开发环境默认认证中心本机地址。
+      jwk-set-uri: ${ZHYC_PLATFORM_AUTH_JWK_SET_URI:http://127.0.0.1:8090/oauth2/jwks}
+      # JWT issuer；必须与认证中心配置一致。
+      issuer: ${ZHYC_PLATFORM_AUTH_ISSUER:http://127.0.0.1:8090}
+      # Token 端点地址。
+      token-uri: ${ZHYC_PLATFORM_AUTH_TOKEN_URI:http://127.0.0.1:8090/oauth2/token}
+      # OAuth2 客户端 ID。
+      client-id: ${ZHYC_PLATFORM_AUTH_CLIENT_ID:zhyc-auth-client}
+      # OAuth2 客户端密钥；开发环境默认与认证中心保持一致，可通过环境变量覆盖。
+      client-secret: ${ZHYC_PLATFORM_AUTH_CLIENT_SECRET:local_auth_client_secret}

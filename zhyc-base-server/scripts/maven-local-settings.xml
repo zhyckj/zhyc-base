@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+  This file is part of ZHYC and is licensed for non-commercial use only.
+  Commercial use requires a separate written license from the copyright holder.
+  SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+-->
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+  <mirrors>
+    <mirror>
+      <id>maven-central</id>
+      <name>Maven Central HTTPS for local ZHYC startup</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+</settings>

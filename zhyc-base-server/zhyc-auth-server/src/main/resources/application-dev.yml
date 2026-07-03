@@ -1,0 +1,87 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 认证中心开发环境配置。
+# 本文件只保留本地开发默认值和环境变量引用，不得写入真实密码、Token、私钥或 AI Key。
+
+# HTTP 服务配置。
+server:
+  # 认证中心开发环境监听端口；默认 8090。
+  port: ${ZHYC_AUTH_PORT:8090}
+
+# Spring Boot 开发环境基础设施配置。
+spring:
+  # Redis 和 Spring Session 依赖的连接配置。
+  data:
+    redis:
+      # Redis 主机；本地开发默认 127.0.0.1。
+      host: ${ZHYC_REDIS_HOST:127.0.0.1}
+      # Redis 端口；默认 6379。
+      port: ${ZHYC_REDIS_PORT:6379}
+      # Redis 密码；本地默认空，真实密码只能通过环境变量注入。
+      password: ${ZHYC_REDIS_PASSWORD:}
+      # Redis 数据库序号；默认 0。
+      database: ${ZHYC_REDIS_DATABASE:0}
+      # Redis 连接超时时间。
+      timeout: ${ZHYC_REDIS_TIMEOUT:2s}
+  # Spring Session 配置。
+  session:
+    # 会话存储类型；开发环境默认 Redis。
+    store-type: ${ZHYC_SESSION_STORE_TYPE:redis}
+    # 会话过期时间。
+    timeout: ${ZHYC_SESSION_TIMEOUT:30m}
+
+# ZHYC 认证中心开发环境配置。
+zhyc:
+  # 平台缓存开关和 Key 前缀。
+  cache:
+    # 是否启用缓存能力。
+    enabled: ${ZHYC_CACHE_ENABLED:true}
+    # 缓存 Key 前缀；保持 zhyc 品牌前缀。
+    prefix: ${ZHYC_CACHE_PREFIX:zhyc}
+  # OAuth2/OIDC、登录用户、平台主体映射和令牌签名配置。
+  auth:
+    # OAuth2 客户端 ID；开发环境默认后台管理端客户端。
+    client-id: ${ZHYC_AUTH_CLIENT_ID:zhyc-auth-client}
+    # OAuth2 客户端密钥；开发环境默认与核心平台 BFF 保持一致，可通过环境变量覆盖。
+    client-secret: ${ZHYC_AUTH_CLIENT_SECRET:local_auth_client_secret}
+    # 授权码模式回调地址；开发环境默认后台前端 Vite 回调页。
+    redirect-uri: ${ZHYC_AUTH_REDIRECT_URI:http://127.0.0.1:5173/auth/callback}
+    # 表单登录成功后的后台前端落点。
+    login-success-redirect-uri: ${ZHYC_AUTH_LOGIN_SUCCESS_REDIRECT_URI:http://127.0.0.1:5173/login}
+    # 未登录访问授权端点时跳转到后台前端登录页的地址。
+    frontend-login-uri: ${ZHYC_AUTH_FRONTEND_LOGIN_URI:http://127.0.0.1:5173/login?authRequest=1}
+    # 登出完成后的后台前端落点。
+    post-logout-redirect-uri: ${ZHYC_AUTH_POST_LOGOUT_REDIRECT_URI:http://127.0.0.1:5173/login?loggedOut=1}
+    # JWT issuer；核心平台校验令牌时必须一致。
+    issuer: ${ZHYC_AUTH_ISSUER:http://127.0.0.1:8090}
+    # 认证中心内置登录账号；开发环境默认 admin，可通过环境变量覆盖。
+    user-name: ${ZHYC_AUTH_USER_NAME:admin}
+    # 认证中心内置登录密码；仅用于本机开发，可通过环境变量覆盖。
+    user-password: ${ZHYC_AUTH_USER_PASSWORD:local_auth_user_password}
+    # 开发环境默认映射到首期平台种子租户。
+    platform-tenant-id: ${ZHYC_AUTH_PLATFORM_TENANT_ID:zhyc-platform}
+    # 开发环境默认映射到首期平台种子管理员用户 ID。
+    platform-user-id: ${ZHYC_AUTH_PLATFORM_USER_ID:1}
+    # 开发环境默认映射到首期平台种子管理员账号。
+    platform-username: ${ZHYC_AUTH_PLATFORM_USERNAME:admin}
+    # 认证中心开发数据源配置。
+    datasource:
+      # OAuth2 授权服务数据源 URL；开发环境默认本机 MySQL。
+      url: ${ZHYC_AUTH_DATASOURCE_URL:jdbc:mysql://127.0.0.1:3306/zhyc-base-v1?useUnicode=true&characterEncoding=utf8&preserveInstants=true&connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true}
+      # 数据源用户名；本机可用环境变量覆盖。
+      username: ${ZHYC_AUTH_DATASOURCE_USERNAME:root}
+      # 数据源密码；示例值仅用于本机开发，真实环境不得复用。
+      password: ${ZHYC_AUTH_DATASOURCE_PASSWORD:123456}
+      # JDBC 驱动类名。
+      driver-class-name: ${ZHYC_AUTH_DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
+    # JWT 签名密钥配置；开发环境未配置时使用运行时生成密钥。
+    jwk:
+      # RSA 私钥 PEM；本机需要固定令牌签名时再注入。
+      private-key-pem: ${ZHYC_AUTH_JWK_PRIVATE_KEY_PEM:}
+      # RSA 公钥 PEM；与私钥成对配置。
+      public-key-pem: ${ZHYC_AUTH_JWK_PUBLIC_KEY_PEM:}
+      # JWK Key ID；用于密钥轮换识别。
+      key-id: ${ZHYC_AUTH_JWK_KEY_ID:}

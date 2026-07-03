@@ -1,0 +1,33 @@
+/*
+ * Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+ * This file is part of ZHYC and is licensed for non-commercial use only.
+ * Commercial use requires a separate written license from the copyright holder.
+ * SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+ */
+
+package com.zhyc.lowcode.metadata.repository;
+
+import com.zhyc.lowcode.metadata.domain.LowcodePageModel;
+import java.util.List;
+
+/**
+ * 低代码页面模型仓储接口。
+ */
+public interface LowcodePageModelRepository {
+
+  /**
+   * 保存页面模型。
+   *
+   * @param pageModel 页面模型
+   * @return 保存后的页面模型
+   */
+  LowcodePageModel save(LowcodePageModel pageModel);
+
+  /**
+   * 查询租户内页面模型。
+   *
+   * @param tenantId 租户业务编码
+   * @return 页面模型列表
+   */
+  List<LowcodePageModel> findByTenantId(String tenantId);
+}

@@ -1,0 +1,79 @@
+/*
+ * Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+ * This file is part of ZHYC and is licensed for non-commercial use only.
+ * Commercial use requires a separate written license from the copyright holder.
+ * SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+ */
+
+/*
+ * 表格操作列统一样式。
+ *
+ * 现有页面部分操作列没有统一容器，兜底选择器会覆盖表格最后一列按钮；
+ * 新页面和低代码生成页面应优先使用 .zhyc-table-actions。
+ */
+.zhyc-table-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 100%;
+  white-space: normal;
+}
+
+.zhyc-table-actions .ant-btn,
+.platform-content .ant-table-tbody > tr > td:last-child .ant-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 28px;
+  margin: 0;
+  padding: 0 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 26px;
+  box-shadow: none;
+}
+
+.platform-content .ant-table-tbody > tr > td:last-child .ant-btn + .ant-btn {
+  margin-left: 6px;
+}
+
+.platform-content .ant-table-tbody > tr > td:last-child .ant-space {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px !important;
+}
+
+.zhyc-table-actions .ant-btn-link,
+.platform-content .ant-table-tbody > tr > td:last-child .ant-btn-link {
+  border-color: #d9d9d9;
+  background: #fff;
+  color: #1f2937;
+}
+
+.zhyc-table-actions .ant-btn-link:not(:disabled):hover,
+.platform-content .ant-table-tbody > tr > td:last-child .ant-btn-link:not(:disabled):hover {
+  border-color: #91caff;
+  background: #fff;
+  color: #1677ff;
+}
+
+.zhyc-table-actions .ant-btn-dangerous,
+.platform-content .ant-table-tbody > tr > td:last-child .ant-btn-dangerous {
+  border-color: #ff7875;
+  background: #fff;
+  color: #ff4d4f;
+}
+
+.zhyc-table-actions .ant-btn-dangerous:not(:disabled):hover,
+.platform-content .ant-table-tbody > tr > td:last-child .ant-btn-dangerous:not(:disabled):hover {
+  border-color: #ff4d4f;
+  background: #fff1f0;
+  color: #ff4d4f;
+}
+
+.platform-content .ant-table-tbody > tr > td:last-child {
+  white-space: nowrap;
+}

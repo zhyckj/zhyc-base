@@ -1,0 +1,4 @@
+src/pages/mine/index.vue:12:          <view class="profile-avatar mobile-solid-icon"></view>
+src/pages/mine/index.vue:177:.profile-avatar {
+src/pages/profile/index.vue:14:          <view class="profile-avatar mobile-solid-icon"></view>
+src/pages/profile/index.vue:271:.profile-avatar {

@@ -1,0 +1,126 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 模块唯一编码；用于模块注册、依赖声明和权限前缀归属。
+moduleCode: system
+# 模块中文名称；用于后台菜单和模块管理展示。
+moduleName: 系统管理
+# 模块版本号；用于模块能力演进和兼容性识别。
+version: 1.0.0
+# 模块类型；core 表示平台核心模块。
+moduleType: core
+# 租户模式；tenant_id 表示业务表和查询必须通过 tenant_id 隔离。
+tenantMode: tenant_id
+# 权限编码前缀；系统管理权限统一使用 system 前缀。
+permissionPrefix: system
+# 后端基础包名；模块扫描和规范校验使用。
+backendPackage: com.zhyc.system
+# 是否依赖开放 API 网关运行。
+openApiGatewayRequired: false
+# 是否依赖认证中心运行。
+authServerRequired: true
+# 是否默认启用模块。
+enabled: true
+# 当前模块依赖的基础模块编码。
+dependencies:
+  - common
+# 当前模块贡献的菜单编码。
+menus:
+  - system:tenant
+  - system:user
+  - system:role
+  - system:module
+  - system:security-protection
+# 当前模块声明的 Shiro 权限编码；必须与接口注解和菜单按钮保持一致。
+permissions:
+  - dashboard:view
+  - monitor:data-source:query
+  - monitor:service:query
+  - monitor:sql:query
+  - system:access-restriction:query
+  - system:access-restriction:evaluate
+  - system:access-restriction:save
+  - system:admin:query
+  - system:admin:edit
+  - system:audit:query
+  - system:code-rule:generate
+  - system:code-rule:query
+  - system:code-rule:save
+  - system:dict:create
+  - system:dict:delete
+  - system:dict:item:create
+  - system:dict:item:delete
+  - system:dict:item:update
+  - system:dict:query
+  - system:dict:update
+  - system:module:query
+  - system:module:view
+  - system:module:update
+  - system:org:create
+  - system:org:delete
+  - system:org:query
+  - system:org:update
+  - system:org:update-status
+  - system:param:query
+  - system:param:save
+  - system:password-policy:query
+  - system:password-policy:save
+  - system:password-policy:validate
+  - system:permission:create
+  - system:permission:delete
+  - system:permission:query
+  - system:permission:update
+  - system:permission:update-status
+  - system:post:create
+  - system:post:delete
+  - system:post:query
+  - system:post:update
+  - system:post:update-status
+  - system:role:authorize
+  - system:role:create
+  - system:role:delete
+  - system:role:edit
+  - system:role:query
+  - system:role:update
+  - system:role:update-status
+  - system:secret:create
+  - system:secret:delete
+  - system:secret:disable
+  - system:secret:enable
+  - system:secret:query
+  - system:secret:rotate
+  - system:secret:update
+  - system:security-protection:block
+  - system:security-protection:query
+  - system:security-protection:record
+  - system:security-protection:save
+  - system:security-protection:unblock
+  - system:tenant:authorized-query
+  - system:tenant:create
+  - system:tenant:delete
+  - system:user:view
+  - system:tenant:query
+  - system:tenant:update
+  - system:tenant:update-status
+  - system:tenant-package:query
+  - system:tenant-package:update
+  - system:tenant-package-module:query
+  - system:tenant-param:query
+  - system:tenant-param:save
+  - system:user:change-password
+  - system:user:create
+  - system:user:delete
+  - system:user:edit
+  - system:user:query
+  - system:user:reset-password
+  - system:user:update
+  - system:user:update-status
+  - system:role:view
+# 当前模块贡献的字典编码。
+dictionaries:
+  - system_status
+# 当前模块需要加载的数据库初始化脚本。
+databaseScripts:
+  - classpath:db/V1__system_core.sql

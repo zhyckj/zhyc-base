@@ -1,0 +1,58 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 开放 API 网关开发环境配置。
+# 本文件只保留本地开发默认值和环境变量引用，不得写入真实密码、Token、私钥或 AI Key。
+
+# HTTP 服务配置。
+server:
+  # 开放 API 网关开发环境监听端口。
+  port: ${ZHYC_OPENAPI_PORT:8070}
+
+# Spring Boot 开发环境基础设施配置。
+spring:
+  # Redis 连接配置；用于限流、nonce 防重放和缓存。
+  data:
+    redis:
+      # Redis 主机。
+      host: ${ZHYC_REDIS_HOST:127.0.0.1}
+      # Redis 端口。
+      port: ${ZHYC_REDIS_PORT:6379}
+      # Redis 密码；本地默认空，真实密码通过环境变量注入。
+      password: ${ZHYC_REDIS_PASSWORD:}
+      # Redis 数据库序号。
+      database: ${ZHYC_REDIS_DATABASE:0}
+      # Redis 连接超时时间。
+      timeout: ${ZHYC_REDIS_TIMEOUT:2s}
+  # 开放 API 网关开发数据源配置。
+  datasource:
+    # 网关业务数据源 URL；开发环境默认本机 MySQL。
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://127.0.0.1:3306/zhyc-base-v1?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    # 数据源用户名。
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    # 数据源密码；示例值仅用于本机开发，真实环境不得复用。
+    password: ${SPRING_DATASOURCE_PASSWORD:123456}
+
+# ZHYC 开放 API 网关开发环境配置。
+zhyc:
+  # 缓存和 Redis 能力开关。
+  cache:
+    # 是否启用网关缓存能力。
+    enabled: ${ZHYC_CACHE_ENABLED:true}
+    # 缓存 Key 前缀。
+    prefix: ${ZHYC_CACHE_PREFIX:zhyc}
+    # Redis 组件开关；用于限流和防重放。
+    redis:
+      enabled: ${ZHYC_REDIS_ENABLED:true}
+  # 开放 API 网关业务配置。
+  openapi:
+    # OAuth2 Token introspection 配置。
+    oauth2:
+      # 认证中心 introspection 端点地址。
+      introspection-uri: ${ZHYC_OPENAPI_OAUTH2_INTROSPECTION_URI:http://127.0.0.1:8090/oauth2/introspect}
+      # 网关调用 introspection 端点使用的客户端 ID。
+      client-id: ${ZHYC_OPENAPI_OAUTH2_CLIENT_ID:replace_with_introspection_client_id}
+      # 网关调用 introspection 端点使用的客户端密钥；本机真实值通过环境变量覆盖。
+      client-secret: ${ZHYC_OPENAPI_OAUTH2_CLIENT_SECRET:replace_with_introspection_client_secret}

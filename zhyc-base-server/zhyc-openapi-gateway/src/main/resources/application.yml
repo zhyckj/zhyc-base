@@ -1,0 +1,21 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 开放 API 网关基础配置。
+# 本文件只放跨环境通用入口；环境差异由 ZHYC_ENV 选择 application-<env>.yml 承载。
+
+# HTTP 服务配置。
+server:
+  # 开放 API 网关默认监听端口。
+  port: 8070
+
+# Spring Boot 基础配置。
+spring:
+  # Spring Profile 选择规则；默认 dev，可通过 ZHYC_ENV=test/prod 切换。
+  profiles:
+    active: ${ZHYC_ENV:dev}
+  # 应用名称；用于日志、监控和服务标识。
+  application:
+    name: zhyc-openapi-gateway

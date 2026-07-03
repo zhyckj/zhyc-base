@@ -1,0 +1,68 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 认证中心基础配置。
+# 本文件只放跨环境通用入口；环境差异由 ZHYC_ENV 选择 application-<env>.yml 承载。
+
+# HTTP 服务配置。
+server:
+  # 认证中心默认监听端口；可被 profile 配置或启动参数覆盖。
+  port: 8090
+
+# Spring Boot 基础配置。
+spring:
+  # Spring Profile 选择规则；默认 dev，可通过 ZHYC_ENV=test/prod 切换。
+  profiles:
+    active: ${ZHYC_ENV:dev}
+  # 应用名称；用于日志、监控和服务标识。
+  application:
+    name: zhyc-auth-server
+
+# ZHYC 认证中心业务配置。
+zhyc:
+  # OAuth2/OIDC、登录用户、平台主体映射和令牌签名配置。
+  auth:
+    # OAuth2 客户端 ID；后台管理端和核心平台换取令牌时使用。
+    client-id: ${ZHYC_AUTH_CLIENT_ID:zhyc-auth-client}
+    # OAuth2 客户端密钥；必须由环境变量或密钥系统注入，禁止提交真实值。
+    client-secret: ${ZHYC_AUTH_CLIENT_SECRET}
+    # 授权码模式回调地址；必须与客户端注册值和前端回调页一致。
+    redirect-uri: ${ZHYC_AUTH_REDIRECT_URI:http://127.0.0.1:8081/login/oauth2/code/zhyc}
+    # 表单登录成功后的默认跳转地址。
+    login-success-redirect-uri: ${ZHYC_AUTH_LOGIN_SUCCESS_REDIRECT_URI:http://127.0.0.1:5173/login}
+    # 未登录访问授权端点时跳转到后台前端登录页的地址。
+    frontend-login-uri: ${ZHYC_AUTH_FRONTEND_LOGIN_URI:http://127.0.0.1:5173/login?authRequest=1}
+    # 登出完成后的后台前端落点。
+    post-logout-redirect-uri: ${ZHYC_AUTH_POST_LOGOUT_REDIRECT_URI:http://127.0.0.1:5173/login?loggedOut=1}
+    # JWT issuer；核心平台校验 Bearer Token 时必须与此值一致。
+    issuer: ${ZHYC_AUTH_ISSUER:http://127.0.0.1:8090}
+    # 认证中心内置登录账号；生产环境必须由受控配置注入。
+    user-name: ${ZHYC_AUTH_USER_NAME}
+    # 认证中心内置登录密码；禁止明文提交到仓库。
+    user-password: ${ZHYC_AUTH_USER_PASSWORD}
+    # 平台租户编码 Claim；用于把认证中心令牌映射到核心平台租户。
+    platform-tenant-id: ${ZHYC_AUTH_PLATFORM_TENANT_ID}
+    # 平台用户主键 Claim；必须为核心平台已启用用户的正整数 ID。
+    platform-user-id: ${ZHYC_AUTH_PLATFORM_USER_ID}
+    # 平台登录账号 Claim；用于 Shiro 主体和审计展示。
+    platform-username: ${ZHYC_AUTH_PLATFORM_USERNAME}
+    # 认证中心持久化数据源配置；用于 OAuth2 客户端、授权、同意和登录审计存储。
+    datasource:
+      # MySQL URL 建议追加 preserveInstants=true&connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true，确保令牌时间点准确。
+      url: ${ZHYC_AUTH_DATASOURCE_URL:}
+      # 数据源用户名；真实值由环境变量或密钥系统注入。
+      username: ${ZHYC_AUTH_DATASOURCE_USERNAME:}
+      # 数据源密码；禁止提交真实值。
+      password: ${ZHYC_AUTH_DATASOURCE_PASSWORD:}
+      # JDBC 驱动类名；默认 MySQL。
+      driver-class-name: ${ZHYC_AUTH_DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}
+    # JWT 签名密钥配置；生产环境必须使用持久化 RSA 密钥。
+    jwk:
+      # RSA PKCS#8 私钥 PEM；未配置时仅允许本地开发使用运行时密钥。
+      private-key-pem: ${ZHYC_AUTH_JWK_PRIVATE_KEY_PEM:}
+      # RSA X.509 公钥 PEM；与私钥成对配置。
+      public-key-pem: ${ZHYC_AUTH_JWK_PUBLIC_KEY_PEM:}
+      # JWK Key ID；用于令牌头部 kid 和密钥轮换。
+      key-id: ${ZHYC_AUTH_JWK_KEY_ID:}

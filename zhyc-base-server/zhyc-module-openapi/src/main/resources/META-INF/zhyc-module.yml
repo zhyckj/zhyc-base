@@ -1,0 +1,62 @@
+# Copyright (c) 2026 众汇云创科技（深圳）有限公司.
+# This file is part of ZHYC and is licensed for non-commercial use only.
+# Commercial use requires a separate written license from the copyright holder.
+# SPDX-License-Identifier: LicenseRef-ZHYC-NonCommercial
+
+# 模块唯一编码；用于模块注册、依赖声明和权限前缀归属。
+moduleCode: openapi
+# 模块中文名称；用于后台菜单和模块管理展示。
+moduleName: 开放平台
+# 模块版本号；用于模块能力演进和兼容性识别。
+version: 1.0.0
+# 模块类型；core 表示平台核心模块。
+moduleType: core
+# 租户模式；tenant_id 表示开发者应用、授权和调用记录按租户隔离。
+tenantMode: tenant_id
+# 权限编码前缀；开放平台权限统一使用 openapi 前缀。
+permissionPrefix: openapi
+# 后端基础包名；模块扫描和规范校验使用。
+backendPackage: com.zhyc.openapi
+# 是否依赖开放 API 网关运行。
+openApiGatewayRequired: true
+# 是否依赖认证中心运行。
+authServerRequired: true
+# 是否默认启用模块。
+enabled: true
+# 当前模块依赖的基础模块编码。
+dependencies:
+  - common
+  - system
+# 当前模块贡献的菜单编码。
+menus:
+  - openapi:app
+  - openapi:catalog
+  - openapi:security
+# 当前模块声明的 Shiro 权限编码；必须与接口注解和菜单按钮保持一致。
+permissions:
+  - openapi:api-key:query
+  - openapi:api-key:rotate
+  - openapi:api-key:save
+  - openapi:api-permission:query
+  - openapi:api-permission:save
+  - openapi:app:query
+  - openapi:app:save
+  - openapi:app:view
+  - openapi:app:update
+  - openapi:call-audit:query
+  - openapi:catalog:query
+  - openapi:catalog:publish
+  - openapi:catalog:save
+  - openapi:debug:invoke
+  - openapi:developer:portal
+  - openapi:error-log:query
+  - openapi:oauth-client:query
+  - openapi:oauth-client:save
+  - openapi:rate-limit-policy:query
+  - openapi:rate-limit-policy:save
+  - openapi:signature-policy:query
+  - openapi:signature-policy:save
+  - openapi:security:audit
+# 当前模块需要加载的数据库初始化脚本。
+databaseScripts:
+  - classpath:db/V1__openapi_core.sql
