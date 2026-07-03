@@ -45,6 +45,7 @@ docs/superpowers/
 docs/standards/
 docs/developer-guide/
 zhyc-base-server/scripts/verify-agent-standards.mjs
+docs/release/test
 
 # 密钥、证书和本地凭据
 *.pem
@@ -112,3 +113,4 @@ Thumbs.db
 .vscode/
 settings.xml
 settings-security.xml
+docs/release/test/
