@@ -20,13 +20,14 @@
 
 注意：由于本项目限制商业用途，因此不属于 OSI 定义下的开源许可证项目，更准确的表述是“源码可见 / Source-Available / 非商用免费”。
 
-## 在线演示
+## 在线演示与帮助文档
 
-可通过以下公开演示环境快速体验当前框架能力：
+可通过以下公开演示环境快速体验当前框架能力，并通过线上帮助文档查看使用说明：
 
 | 项目 | 内容 |
 | --- | --- |
 | 演示地址 | [https://base.zhyc-cloud.com/](https://base.zhyc-cloud.com/) |
+| 帮助文档 | [https://doc.zhyc-cloud.com/](https://doc.zhyc-cloud.com/) |
 | 演示账号 | `admin` |
 | 演示密码 | `zhyc@123456` |
 
@@ -535,4 +536,5 @@ rtk node zhyc-base-server/scripts/verify-security-phase1.mjs
 
 ## 相关文档
 
+- [线上帮助文档](https://doc.zhyc-cloud.com/)
 - [本地运行手册](docs/release/phase1-local-runbook.md)

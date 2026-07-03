@@ -99,6 +99,17 @@
         />
         <a-alert v-if="errorMessage" class="auth-alert" type="error" :message="errorMessage" show-icon />
 
+        <div class="demo-notice" aria-label="演示环境登录提示">
+          <div class="demo-notice-icon">
+            <InfoCircleOutlined />
+          </div>
+          <div class="demo-notice-content">
+            <strong>演示环境</strong>
+            <span>演示账号：admin / admin@123456</span>
+            <span>数据库每天 08:00 自动恢复，请勿存放正式数据。</span>
+          </div>
+        </div>
+
         <a-form
           v-if="authRequestReady"
           class="login-form"
@@ -174,7 +185,13 @@
 </template>
 
 <script setup lang="ts">
-import { LockOutlined, LoginOutlined, SafetyCertificateOutlined, UserOutlined } from '@ant-design/icons-vue';
+import {
+  InfoCircleOutlined,
+  LockOutlined,
+  LoginOutlined,
+  SafetyCertificateOutlined,
+  UserOutlined,
+} from '@ant-design/icons-vue';
 import { computed, onMounted, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -685,6 +702,54 @@ function submitFrontendLogin(): void {
   animation: alertIn 240ms ease-out both;
 }
 
+.demo-notice {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border: 1px solid rgb(20 184 166 / 24%);
+  border-radius: 8px;
+  color: #334155;
+  background:
+    linear-gradient(135deg, rgb(240 253 250 / 86%), rgb(239 246 255 / 76%)),
+    rgb(255 255 255 / 78%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 80%),
+    0 12px 28px rgb(18 32 54 / 6%);
+  animation: fadeSlideUp 540ms ease-out 220ms both;
+}
+
+.demo-notice-icon {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: #0f766e;
+  background: rgb(20 184 166 / 12%);
+}
+
+.demo-notice-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.demo-notice-content strong {
+  color: #172033;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.demo-notice-content span {
+  color: #64748b;
+}
+
 .login-form :deep(.ant-form-item-label > label) {
   color: #334155;
   font-weight: 600;
@@ -848,6 +913,7 @@ function submitFrontendLogin(): void {
 
   .login-form,
   .auth-handoff,
+  .demo-notice,
   .login-button {
     width: min(100%, calc(100vw - 78px));
     max-width: calc(100vw - 78px);
@@ -864,6 +930,17 @@ function submitFrontendLogin(): void {
 
   .auth-card h1 {
     font-size: 26px;
+  }
+
+  .demo-notice {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 10px;
+    padding: 11px 12px;
+  }
+
+  .demo-notice-icon {
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -906,7 +983,8 @@ function submitFrontendLogin(): void {
   .brand-copy span,
   .advantage-card p,
   .auth-heading p,
-  .auth-footer {
+  .auth-footer,
+  .demo-notice-content span {
     color: #94a3b8;
   }
 
@@ -915,14 +993,16 @@ function submitFrontendLogin(): void {
   .advantage-card strong,
   .auth-card h1,
   .mobile-brand,
-  .auth-footer strong {
+  .auth-footer strong,
+  .demo-notice-content strong {
     color: #e5edf7;
   }
 
   .identity-board,
   .advantage-card,
   .process-item,
-  .auth-handoff {
+  .auth-handoff,
+  .demo-notice {
     border-color: rgb(148 163 184 / 22%);
     background:
       linear-gradient(135deg, rgb(30 41 59 / 78%), rgb(15 23 42 / 68%)),
@@ -933,7 +1013,8 @@ function submitFrontendLogin(): void {
   }
 
   .process-item-active,
-  .auth-badge {
+  .auth-badge,
+  .demo-notice-icon {
     border-color: rgb(65 214 195 / 38%);
     color: #5eead4;
     background: rgb(20 184 166 / 12%);
@@ -972,6 +1053,7 @@ function submitFrontendLogin(): void {
   .process-list,
   .auth-heading,
   .auth-alert,
+  .demo-notice,
   .login-form,
   .auth-handoff,
   .auth-footer,

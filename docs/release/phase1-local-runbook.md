@@ -2,11 +2,12 @@
 
 本文档用于首期本地联调和交付验收，覆盖核心平台、认证中心、开放 API 网关、后台管理端和 uni-app 移动端。
 
-在线演示环境可用于先体验框架功能和页面效果：
+在线演示环境可用于先体验框架功能和页面效果，线上帮助文档可用于查看使用说明：
 
 | 项目 | 内容 |
 | --- | --- |
 | 演示地址 | [https://base.zhyc-cloud.com/](https://base.zhyc-cloud.com/) |
+| 帮助文档 | [https://doc.zhyc-cloud.com/](https://doc.zhyc-cloud.com/) |
 | 演示账号 | `admin` |
 | 演示密码 | `zhyc@123456` |
 

@@ -11,7 +11,7 @@
  * <p>用于当前仍返回数组列表的管理页面，先提供统一前端分页体验；后续大数据量页面应继续升级为后端分页。</p>
  */
 export const tablePagination = {
-  pageSize: 10,
+  defaultPageSize: 10,
   pageSizeOptions: ['10', '20', '50', '100'],
   showSizeChanger: true,
   showQuickJumper: true,
